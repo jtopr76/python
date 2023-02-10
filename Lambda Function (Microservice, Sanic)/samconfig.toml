@@ -1,0 +1,10 @@
+version = 0.2
+[deploy]
+[deploy.parameters]
+stack_name = "function_name"
+s3_bucket = "bucket"
+s3_prefix = "prefix"
+region = "aws_region"
+confirm_changeset = true
+capabilities = "CAPABILITY_IAM"
+image_repositories = []

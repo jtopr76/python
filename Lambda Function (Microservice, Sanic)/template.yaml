@@ -1,0 +1,38 @@
+AWSTemplateFormatVersion: '2010-09-09'
+Transform: AWS::Serverless-2016-10-31
+Description: Description
+
+Globals:
+  Function:
+    Environment:
+      Variables:
+        DB_HOST: db_host
+        DB_USER: db_user
+        DB_PASSWORD: db_password
+        DB_NAME: db_name
+        AWS_REGION_NAME: asw_region
+        COGNITO_POOL_id: cognito_pool_id
+        COGNITO_APP_CLIENT_ID: cognito_app_client_id
+
+Resources:
+  Function:
+    Type: AWS::Serverless::Function
+    Properties:
+      FunctionName: "function_name"
+      Handler: app.handler
+      Runtime: python3.8
+      Timeout: 15
+      Events:
+        Api:
+          Type: HttpApi
+          Properties:
+            ApiId: !Ref Api
+
+  Api:
+    Type: AWS::Serverless::HttpApi
+
+Outputs:
+  ApiUrl:
+    Description: URL of your API
+    Value:
+      Fn::Sub: 'https://${Api}.execute-api.${AWS::Region}.${AWS::URLSuffix}/'

@@ -1,0 +1,8 @@
+sanic
+mysql-connector-python
+mangum
+uvicorn
+pycognito
+pyjwt
+python-dotenv
+sanic_cors
